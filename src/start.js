@@ -1,8 +1,16 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import Welcome from "./welcome";
+import App from "./app.js";
 
-ReactDOM.render(<HelloWorld />, document.querySelector("main"));
+let elem;
+const userIsNotLoggedIn = location.pathname === "/welcome";
 
-function HelloWorld() {
-    return <div>Hello, Worldd!</div>;
+if (userIsNotLoggedIn) {
+    elem = <Welcome />;
+} else {
+    elem = <App />;
 }
+
+//reactDOM.render can only be called once per project.
+ReactDOM.render(elem, document.querySelector("main"));
