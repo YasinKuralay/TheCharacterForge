@@ -2,8 +2,8 @@ const express = require("express");
 const app = express();
 const compression = require("compression");
 const cookieSession = require("cookie-session");
-const { compare, hash } = require("./bc");
-const db = require("./db");
+// const { compare, hash } = require("./bc");
+// const db = require("./db");
 const csurf = require("csurf");
 const cryptoRandomString = require("crypto-random-string");
 
@@ -24,7 +24,7 @@ app.use(function (req, res, next) {
     next();
 });
 
-app.use(express.static("public"));
+// app.use(express.static("public"));
 
 if (process.env.NODE_ENV != "production") {
     app.use(
@@ -52,8 +52,10 @@ app.get("*", function (req, res) {
         req.url !== "/login" &&
         req.url !== "/resetpassword"
     ) {
+        console.log("this just ran");
         res.redirect("/");
     } else {
+        console.log("nope, this ran");
         res.sendFile(__dirname + "/index.html");
     }
 });
