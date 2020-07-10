@@ -1,0 +1,77 @@
+body {
+    width: 100%;
+    height: 100%;
+    background-color: #2e2e32;
+    text-align: center;
+    color: #a17868;
+    margin: 0;
+    /* overflow: hidden; */
+}
+
+#errormsg {
+    color: red;
+}
+
+#register {
+    display: grid;
+    grid-row-gap: 26px;
+    margin-top: 100px;
+    /* background-color: grey; */
+}
+
+#register input {
+    width: 140px;
+    margin: auto;
+    border-radius: 10px;
+    border: 0px solid tomato;
+    padding: 10px;
+    box-shadow: 7px 7px 8px black;
+    /* background-color: rgb(241, 208, 16); */
+}
+
+#register input:focus {
+    outline: none;
+    background-color: rgb(189, 189, 189);
+    box-shadow: 4px 4px 6px black;
+}
+
+#register button {
+    width: 80px;
+    margin: auto;
+    background-color: #a17868;
+    border: 0px solid tomato;
+    border-radius: 10px;
+    padding: 5px;
+    box-shadow: 5px 5px 8px black;
+}
+
+#register button:focus {
+    outline: none;
+}
+
+#register button:hover {
+    cursor: pointer;
+    background-color: #775a4e;
+    box-shadow: 2px 2px 8px black;
+}
+
+#ifYou {
+    margin-top: 0;
+    color: #5f4346;
+}
+
+#forgotPassword {
+    color: #5f4346;
+    text-decoration: none;
+}
+
+#logo {
+    font-size: 46px;
+    color: #cb7050;
+}
+
+#welcomeLogo {
+    width: 300px;
+    position: absolute;
+    top: 30px;
+}

@@ -6,8 +6,12 @@ const cookieSession = require("cookie-session");
 // const db = require("./db");
 const csurf = require("csurf");
 const cryptoRandomString = require("crypto-random-string");
+const { compare, hash } = require("./bc");
+const db = require("./db.js");
+const ses = require("./ses.js");
 
 app.use(compression());
+app.use(express.json());
 
 app.use(
     cookieSession({
@@ -24,7 +28,7 @@ app.use(function (req, res, next) {
     next();
 });
 
-// app.use(express.static("public"));
+app.use(express.static("public"));
 
 if (process.env.NODE_ENV != "production") {
     app.use(
@@ -37,23 +41,131 @@ if (process.env.NODE_ENV != "production") {
     app.use("/bundle.js", (req, res) => res.sendFile(`${__dirname}/bundle.js`));
 }
 
-// app.get("/welcome", (req, res) => {
-//     if (req.session.userId) {
-//         res.redirect("/");
-//     } else {
-//         res.sendFile(__dirname + "/index.html"); //should I just delete the else?
-//     }
-// });
+app.get("/welcome", (req, res) => {
+    if (req.session.userId) {
+        res.redirect("/");
+    }
+});
+
+app.post("/register", (req, res) => {
+    console.log("req.body: ", req.body);
+    if (
+        !req.body.firstname ||
+        !req.body.lastname ||
+        !req.body.email ||
+        !req.body.password
+    ) {
+        console.log("didnt pass realiy check");
+        res.json({ success: false });
+    } else {
+        hash(req.body.password).then((hashed) => {
+            db.registerUser(
+                req.body.firstname,
+                req.body.lastname,
+                req.body.email,
+                hashed
+            )
+                .then((result) => {
+                    console.log(
+                        "the result of post register hashing is: ",
+                        result
+                    );
+                    req.session.userId = result.rows[0].id;
+                    res.json({ success: true });
+                })
+                .catch((err) => {
+                    console.log("error in register", err);
+                    res.json({ success: false });
+                });
+        });
+    }
+});
+
+app.post("/login", (req, res) => {
+    if (!req.body.email || !req.body.password) {
+        res.json({ success: false });
+    } else {
+        db.getPasswordByEmail(req.body.email)
+            .then((result) => {
+                compare(req.body.password, result.rows[0].password)
+                    .then((outcome) => {
+                        if (outcome) {
+                            console.log("they match!");
+                            console.log("the compare returns: ", result);
+                            req.session.userId = result.rows[0].id;
+                            res.json({ success: true });
+                        } else {
+                            console.log("no match");
+                            res.json({ success: false });
+                        }
+                    })
+                    .catch((err) => {
+                        console.log("error in comparing password", err);
+                    });
+            })
+            .catch((err) => {
+                console.log("error in getpasswordbyemail", err);
+                res.json({ success: false });
+            });
+    }
+});
+
+app.post("/sendemail", (req, res) => {
+    db.getPasswordByEmail(req.body.email)
+        .then(() => {
+            const secretCode = cryptoRandomString({
+                length: 6,
+            });
+            db.insertSecretCode(req.body.email, secretCode)
+                .then(() => {
+                    let message = `Please enter the following code in the browser. Your code for reset password is ${secretCode}`;
+                    let subject = "Your Reset Password Request at Persona";
+                    ses.sendEmail(req.body.email, message, subject);
+                })
+                .catch((err) => {
+                    console.log("error in insertSecretCode", err);
+                    res.json({ success: false });
+                });
+        })
+        .catch((err) => {
+            console.log("error in get password", err);
+            res.json({ success: false });
+        });
+    res.json({ success: true }); //this needs modification
+});
+
+app.post("/matchcode", (req, res) => {
+    db.matchSecretCode(req.body.email)
+        .then((result) => {
+            if (req.body.code == result.rows[0].code) {
+                hash(req.body.password).then((hashed) => {
+                    db.updateUserPassword(hashed, req.body.email)
+                        .then(() => {
+                            res.json({ success: true });
+                        })
+                        .catch((err) => {
+                            console.log("err in db update", err);
+                            res.json({ success: false });
+                        });
+                });
+            } else {
+                res.json({ success: false });
+            }
+        })
+        .catch((err) => {
+            console.log("error in matchsecretcode: ", err);
+        });
+});
 
 app.get("*", function (req, res) {
     if (
         !req.session.userId &&
-        req.url !== "/" &&
+        req.url !== "/welcome" &&
         req.url !== "/login" &&
         req.url !== "/resetpassword"
     ) {
         console.log("this just ran");
-        res.redirect("/");
+        res.redirect("/welcome");
     } else {
         console.log("nope, this ran");
         res.sendFile(__dirname + "/index.html");
