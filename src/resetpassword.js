@@ -36,7 +36,10 @@ class ResetPassword extends Component {
 
                     <p id="ifYou">
                         If you don&apos;t have an account, please{" "}
-                        <Link to="/">register</Link> first.
+                        <Link id="textDecoration" to="/">
+                            register
+                        </Link>{" "}
+                        first.
                     </p>
                 </div>
             );
@@ -70,7 +73,10 @@ class ResetPassword extends Component {
 
                     <p id="ifYou">
                         If you don&apos;t have an account, please{" "}
-                        <Link to="/">register</Link> first.
+                        <Link id="textDecoration" to="/">
+                            register
+                        </Link>{" "}
+                        first.
                     </p>
                 </div>
             );
@@ -80,8 +86,11 @@ class ResetPassword extends Component {
                     <h2>Reset Password</h2>
                     <h3>Success!</h3>
                     <p>
-                        You can now <Link to="/login">log in</Link> with your
-                        new password
+                        You can now{" "}
+                        <Link id="textDecoration" to="/login">
+                            log in
+                        </Link>{" "}
+                        with your new password
                     </p>
                 </div>
             );

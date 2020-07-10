@@ -110,7 +110,10 @@ class Registration extends Component {
 
                 <p id="ifYou">
                     If you already have an account, please{" "}
-                    <Link to="/login">log in</Link>.
+                    <Link id="textDecoration" to="/login">
+                        log in
+                    </Link>
+                    .
                 </p>
             </div>
         );

@@ -58,12 +58,18 @@ class Login extends Component {
                 <button onClick={() => this.submit()}>Login</button>
 
                 <p id="forgotPassword">
-                    <Link to="/ResetPassword">Forgot your password?</Link>
+                    Forgot your{" "}
+                    <Link id="textDecoration" to="/ResetPassword">
+                        password?
+                    </Link>
                 </p>
 
                 <p id="ifYou">
                     If you don&apos;t have an account, please{" "}
-                    <Link to="/">register</Link> first.
+                    <Link id="textDecoration" to="/">
+                        register
+                    </Link>{" "}
+                    first.
                 </p>
             </div>
         );
