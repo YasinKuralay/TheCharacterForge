@@ -44,6 +44,8 @@ if (process.env.NODE_ENV != "production") {
 app.get("/welcome", (req, res) => {
     if (req.session.userId) {
         res.redirect("/");
+    } else {
+        res.sendFile(__dirname + "/index.html");
     }
 });
 
