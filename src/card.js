@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 export default function Card() {
     const [offsetXOnClick, setOffsetXOnClick] = useState(0);
@@ -9,18 +9,34 @@ export default function Card() {
         top: "200px",
     });
 
+    //I have to add the event listeners with useEffect because useState is asynchronous,
+    //and the mouse will jump to its previous clicked location on the div, everytime a click occurs
+    useEffect(() => {
+        if (dragMeNow) {
+            document.addEventListener("mousemove", movingFunction);
+            document.addEventListener("mouseup", removeTheEventListener);
+        }
+    }, [dragMeNow]);
+
     const dragMeToggleTrue = (e) => {
         setDragMeNow(true);
         setOffsetXOnClick(e.nativeEvent.offsetX);
         setOffsetYOnClick(e.nativeEvent.offsetY);
+        // document.addEventListener("mousemove", movingFunction);
+        // document.addEventListener("mouseup", removeTheEventListener);
+    };
+
+    const removeTheEventListener = () => {
+        document.removeEventListener("mousemove", movingFunction);
+        document.removeEventListener("mouseup", removeTheEventListener);
     };
 
     const dragMeToggleFalse = () => {
         setDragMeNow(false);
     };
 
-    const dragMe = (e) => {
-        console.log("HERE: ", offsetXOnClick);
+    const movingFunction = (e) => {
+        e.preventDefault();
         setStyleObject({
             left: e.pageX - offsetXOnClick,
             top: e.pageY - offsetYOnClick,
@@ -32,8 +48,8 @@ export default function Card() {
             id="card"
             onMouseDown={dragMeToggleTrue}
             onMouseUp={dragMeToggleFalse}
-            onMouseOut={dragMeToggleFalse}
-            onMouseMove={dragMeNow && dragMe}
+            // onMouseOut={dragMeToggleFalse}
+            // onMouseMove={dragMeNow && dragMe}
             style={styleObject}
         ></div>
     );

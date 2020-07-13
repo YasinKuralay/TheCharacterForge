@@ -193,7 +193,7 @@ a {
 /* SIDEBAR */
 #sidebar {
     position: absolute;
-    z-index: 1000;
+    z-index: 998;
     top: 65px;
     bottom: 0px;
     width: 140px;
@@ -209,7 +209,10 @@ a {
 /* CARD */
 #card {
     position: absolute;
-    background-color: cornflowerblue;
-    width: 100px;
-    height: 100px;
+    background-color: #17171d;
+    border-radius: 10px;
+    border: 3px solid #0d0d13;
+    box-shadow: 5px 5px 10px black;
+    width: 230px;
+    height: 350px;
 }
