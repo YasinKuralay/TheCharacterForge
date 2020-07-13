@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 export default function Card() {
+    const [flipCardFront, setFlipCardFront] = useState(true);
     const [offsetXOnClick, setOffsetXOnClick] = useState(0);
     const [offsetYOnClick, setOffsetYOnClick] = useState(0);
     const [dragMeNow, setDragMeNow] = useState(false);
@@ -45,32 +46,69 @@ export default function Card() {
 
     const stopTheBubblingInCard = (e) => {
         e.stopPropagation();
+        // e.preventDefault();
+    };
+
+    const toggleFlipCard = (e) => {
+        setFlipCardFront(!flipCardFront);
     };
 
     return (
         <div
-            id="card"
+            className="cardContainer"
             onMouseDown={dragMeToggleTrue}
             onMouseUp={dragMeToggleFalse}
             // onMouseOut={dragMeToggleFalse}
             // onMouseMove={dragMeNow && dragMe}
             style={styleObject}
         >
-            {" "}
-            <h3
-                className="titleOfCard"
-                onMouseDown={stopTheBubblingInCard}
-                // onMouseMove={preventDefault}
+            <div
+                className="innerCardContainer"
+                id={!flipCardFront && "innerCardFlipId"}
             >
-                The Title
-            </h3>
-            <textarea
-                name="defaultTextArea"
-                cols="24"
-                rows="18"
-                className="cardTextarea"
-                onMouseDown={stopTheBubblingInCard}
-            ></textarea>
+                <div>
+                    <i
+                        onClick={toggleFlipCard}
+                        className="fas fa-undo-alt positionMe"
+                        onMouseDown={stopTheBubblingInCard}
+                    ></i>
+                    <h3
+                        className="titleOfCard"
+                        onMouseDown={stopTheBubblingInCard}
+                        // onMouseMove={preventDefault}
+                    >
+                        The Title
+                    </h3>
+                    <textarea
+                        name="defaultTextArea"
+                        cols="24"
+                        rows="18"
+                        className="cardTextarea"
+                        onMouseDown={stopTheBubblingInCard}
+                    ></textarea>
+                </div>
+                <div className="backfaceOfCard">
+                    <i
+                        onClick={toggleFlipCard}
+                        className="fas fa-undo-alt"
+                        onMouseDown={stopTheBubblingInCard}
+                    ></i>
+                    <h3
+                        className="titleOfCard"
+                        onMouseDown={stopTheBubblingInCard}
+                        // onMouseMove={preventDefault}
+                    >
+                        NOTES: The Title
+                    </h3>
+                    <textarea
+                        name="defaultTextArea"
+                        cols="24"
+                        rows="18"
+                        className="cardTextarea"
+                        onMouseDown={stopTheBubblingInCard}
+                    ></textarea>
+                </div>
+            </div>
         </div>
     );
 }

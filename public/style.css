@@ -183,6 +183,12 @@ a {
     color: white;
 }
 
+#topbarLogo {
+    position: absolute;
+    left: 0;
+    top: 6px;
+}
+
 #logout {
     border-right: none;
 }
@@ -196,6 +202,7 @@ a {
     width: 140px;
     background-color: #2c2c2f;
     box-shadow: 2px 10px 10px black;
+    border-top: 2px solid #121220;
 }
 
 #sidebar div {
@@ -219,20 +226,76 @@ a {
     transform: scale(1.12);
 }
 
+.sidebarCard {
+    background-color: #1b1b29;
+}
+
 .sidebarCard:hover {
     cursor: pointer;
     color: white;
+    background-color: #10101d;
+}
+
+.sidebarCard i {
+    margin-right: 7px;
 }
 
 /* CARD */
-#card {
+.cardContainer {
     position: absolute;
-    background-color: #17171d;
-    border-radius: 10px;
-    border: 3px solid #0d0d13;
-    box-shadow: 5px 5px 10px black;
+    background-color: transparent;
+    border-radius: 5px;
+
     width: 230px;
     height: 350px;
+    perspective: 1000px;
+}
+
+.innerCardContainer {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+}
+
+.innerCardContainer div {
+    position: absolute;
+    backface-visibility: hidden;
+    background-color: #17171d;
+    border-radius: 5px;
+    width: 100%;
+    height: 100%;
+    border: 3px solid #0d0d13;
+    box-shadow: 5px 5px 10px black;
+}
+
+.innerCardContainer i {
+    cursor: pointer;
+    background-color: #0d0d13;
+    padding: 7px;
+    border-radius: 50%;
+}
+
+.innerCardContainer i:hover {
+    color: white;
+}
+
+.positionMe {
+    position: absolute;
+    left: 5px;
+    top: 5px;
+}
+
+.backfaceOfCard {
+    transform: rotateY(180deg);
+}
+
+/* .cardContainer:hover .innerCardContainer {
+    transform: rotateY(180deg);
+} */
+#innerCardFlipId {
+    transform: rotateY(180deg);
 }
 
 .cardTextarea {

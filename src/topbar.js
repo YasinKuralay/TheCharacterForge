@@ -8,6 +8,7 @@ export default function topbar(props) {
         <div>
             <div id="topBarPlaceholder"></div>
             <div id="topBar">
+                <img id="topbarLogo" src="./logo.png" width="160px" />
                 <div className="topBarComponent" onClick={goToHomepage}>
                     <i className="fas fa-home fa-lg"></i>
                     <span> Home</span>
