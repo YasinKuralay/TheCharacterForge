@@ -43,6 +43,10 @@ export default function Card() {
         });
     };
 
+    const stopTheBubblingInCard = (e) => {
+        e.stopPropagation();
+    };
+
     return (
         <div
             id="card"
@@ -51,6 +55,22 @@ export default function Card() {
             // onMouseOut={dragMeToggleFalse}
             // onMouseMove={dragMeNow && dragMe}
             style={styleObject}
-        ></div>
+        >
+            {" "}
+            <h3
+                className="titleOfCard"
+                onMouseDown={stopTheBubblingInCard}
+                // onMouseMove={preventDefault}
+            >
+                The Title
+            </h3>
+            <textarea
+                name="defaultTextArea"
+                cols="24"
+                rows="18"
+                className="cardTextarea"
+                onMouseDown={stopTheBubblingInCard}
+            ></textarea>
+        </div>
     );
 }
