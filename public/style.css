@@ -189,3 +189,19 @@ a {
     border-right: none;
     border-left: 3px solid #121220;
 }
+
+/* SIDEBAR */
+#sidebar {
+    position: absolute;
+    z-index: 1000;
+    top: 65px;
+    bottom: 0px;
+    width: 140px;
+    background-color: #2c2c2f;
+    box-shadow: 5px 10px 10px black;
+}
+
+#sidebar div {
+    background-color: #17171d;
+    padding: 8px 0px;
+}
