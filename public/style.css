@@ -205,3 +205,11 @@ a {
     background-color: #17171d;
     padding: 8px 0px;
 }
+
+/* CARD */
+#card {
+    position: absolute;
+    background-color: cornflowerblue;
+    width: 100px;
+    height: 100px;
+}

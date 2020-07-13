@@ -1,11 +1,13 @@
 import React from "react";
 import Sidebar from "./sidebar";
+import Card from "./card";
 
 export default function CreateCharacter() {
     return (
         <div>
             This is CreateCharacter
             <Sidebar />
+            <Card />
         </div>
     );
 }
