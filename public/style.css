@@ -207,6 +207,7 @@ a {
 
 #sidebar div {
     padding: 8px 0px;
+    line-height: 20px;
 }
 
 #addBar {
@@ -228,6 +229,7 @@ a {
 
 .sidebarCard {
     background-color: #1b1b29;
+    /* line-height: 32px; */
 }
 
 .sidebarCard:hover {
@@ -240,6 +242,25 @@ a {
     margin-right: 7px;
 }
 
+.sidebarCard input {
+    width: 100px;
+    background-color: inherit;
+    color: inherit;
+    border: none;
+    left: 10px;
+    margin-left: 20px;
+    font-family: Georgia, Arial, sans-serif;
+    font-size: 15px;
+}
+
+.sidebarPersonName {
+    background-color: #0c0c16;
+}
+
+.sidebarPersonName i {
+    position: absolute;
+    left: 13px;
+}
 /* CARD */
 .cardContainer {
     position: absolute;
@@ -281,9 +302,15 @@ a {
     color: white;
 }
 
-.positionMe {
+.flipSign {
     position: absolute;
     left: 5px;
+    top: 5px;
+}
+
+.cross {
+    position: absolute;
+    right: 5px;
     top: 5px;
 }
 
@@ -291,9 +318,6 @@ a {
     transform: rotateY(180deg);
 }
 
-/* .cardContainer:hover .innerCardContainer {
-    transform: rotateY(180deg);
-} */
 #innerCardFlipId {
     transform: rotateY(180deg);
 }

@@ -69,9 +69,10 @@ export default function Card() {
                 <div>
                     <i
                         onClick={toggleFlipCard}
-                        className="fas fa-undo-alt positionMe"
+                        className="fas fa-undo-alt flipSign"
                         onMouseDown={stopTheBubblingInCard}
                     ></i>
+                    <i className="fas fa-times cross"></i>
                     <h3
                         className="titleOfCard"
                         onMouseDown={stopTheBubblingInCard}
@@ -93,6 +94,7 @@ export default function Card() {
                         className="fas fa-undo-alt"
                         onMouseDown={stopTheBubblingInCard}
                     ></i>
+                    {/* <i className="fas fa-times cross"></i> */}
                     <h3
                         className="titleOfCard"
                         onMouseDown={stopTheBubblingInCard}
