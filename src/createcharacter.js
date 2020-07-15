@@ -1,18 +1,22 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "./axios";
 import Sidebar from "./sidebar";
 import Card from "./card";
+import Character from "./character";
 
 export default function CreateCharacter() {
+    const [charactersId, setCharacterId] = useState(0);
     //on component mount, creates a new character table
     useEffect(() => {
-        axios.get("/createcharacter");
+        axios.post("/createcharacter").then(({ data }) => {
+            setCharacterId(data.characterId);
+        });
     }, []);
 
     return (
         <div>
-            This is CreateCharacter
-            <Sidebar />
+            {charactersId && <Character characterId={charactersId} />}
+            {charactersId && <Sidebar characterId={charactersId} />}
             <Card />
         </div>
     );

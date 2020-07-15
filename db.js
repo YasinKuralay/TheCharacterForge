@@ -56,3 +56,33 @@ module.exports.createUsersCharacters = (userId) => {
         description TEXT
     );`);
 };
+
+// module.exports.returnLastCharacter = (userId) => {
+//     return db.query(`SELECT * FROM user${userId}Characters
+//     ORDER BY id DESC LIMIT 1`);
+// };
+
+// module.exports.createCharacter = (userId, number) => {
+//     return db.query(`INSERT INTO user${userId}Characters (name)
+//     VALUES ($1)`, []);
+// }
+
+module.exports.createCharacter = (name, description, userId) => {
+    return db.query(
+        `INSERT INTO user${userId}Characters (name, description)
+    VALUES ($1, $2)
+    RETURNING id`,
+        [name, description]
+    );
+};
+
+module.exports.createCharacterTable = (userId, characterId) => {
+    return db.query(
+        `CREATE TABLE user${userId}character${characterId}(
+        id SERIAL PRIMARY KEY,
+        heading TEXT,
+        content_front TEXT,
+        content_back TEXT
+    )`
+    );
+};

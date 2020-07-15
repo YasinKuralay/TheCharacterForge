@@ -80,6 +80,7 @@ export default function Card() {
                     >
                         The Title
                     </h3>
+                    <section className="cardBetweenBorder"></section>
                     <textarea
                         name="defaultTextArea"
                         cols="24"
@@ -102,6 +103,7 @@ export default function Card() {
                     >
                         NOTES: The Title
                     </h3>
+                    {/* <section className="cardBetweenBorder"></section> */}
                     <textarea
                         name="defaultTextArea"
                         cols="24"

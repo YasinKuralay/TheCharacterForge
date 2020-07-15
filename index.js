@@ -49,6 +49,38 @@ app.get("/welcome", (req, res) => {
     }
 });
 
+// app.get("/createcharacter", (req, res) => {
+//     db.returnLastCharacter(req.session.userId).then((data) => {
+//         console.log("data in createcharacter is: ", data.rows[0]);
+//         if (!data.rows[0]) {
+//             db.createCharacter(req.session.userId, 1);
+//         } else {
+//             console.log("data.rows[0] + 1 is: ", data.rows[0] + 1);
+//             db.createCharacter(req.session.userId, data.rows[0] + 1);
+//         }
+//     });
+// });
+
+app.post("/createcharacter", (req, res) => {
+    db.createCharacter("Allison", "No description yet", req.session.userId)
+        .then((data) => {
+            let characterId = data.rows[0].id;
+            db.createCharacterTable(req.session.userId, characterId)
+                .then(() => {
+                    res.json({ characterId });
+                })
+                .catch((err) => {
+                    console.log(
+                        "error in createCharacterTable in /createcharacter: ",
+                        err
+                    );
+                });
+        })
+        .catch((err) => {
+            console.log("error in createCharacter in /createcharacter: ", err);
+        });
+});
+
 app.post("/register", (req, res) => {
     console.log("req.body: ", req.body);
     if (
@@ -71,10 +103,6 @@ app.post("/register", (req, res) => {
                     req.session.userId = result.rows[0].id;
                     db.createUsersCharacters(req.session.userId)
                         .then(() => {
-                            console.log(
-                                "req.session.userId is: ",
-                                req.session.userId
-                            );
                             res.json({ success: true });
                         })
                         .catch((err) => {
