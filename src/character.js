@@ -9,8 +9,11 @@ export default function Character(props) {
     const [charInfo, setCharInfo] = useState([]);
     const [cardId, setCardId] = useState(null);
     const [renderCard1, setRenderCard1] = useState(false);
+    const [card1Info, setCard1Info] = useState({});
     const [renderCard2, setRenderCard2] = useState(false);
+    const [card2Info, setCard2Info] = useState({});
     const [renderCard3, setRenderCard3] = useState(false);
+    const [card3Info, setCard3Info] = useState({});
 
     useEffect(() => {
         axios.get(`/character${props.charactersId}`).then(({ data }) => {
@@ -24,24 +27,40 @@ export default function Character(props) {
 
     useEffect(() => {
         console.log("second useeffect just ran!");
-        if (!renderCard1) {
+        if (!renderCard1 && cardId !== -10) {
             console.log("card number 1 rendered!");
+            setCard1Info(cardsInfo[cardId]);
             setRenderCard1(true);
+            setCardId(-10);
             return;
-        } else if (!renderCard2) {
+        } else if (!renderCard2 && cardId !== -10) {
             console.log("card number 2 rendered!");
+            setCard2Info(cardsInfo[cardId]);
             setRenderCard2(true);
+            setCardId(-10);
             return;
-        } else if (!renderCard3) {
+        } else if (!renderCard3 && cardId !== -10) {
             console.log("card number 3 rendered!");
+            setCard3Info(cardsInfo[cardId]);
             setRenderCard3(true);
+            setCardId(-10);
             return;
         }
     }, [cardId]);
 
+    const closeCard = (cardId) => {
+        if (cardId === 1) {
+            setRenderCard1(false);
+        } else if (cardId === 2) {
+            setRenderCard2(false);
+        } else if (cardId === 3) {
+            setRenderCard3(false);
+        }
+    };
+
     const renderCardWithInfo = (cardIdArg) => {
         console.log("rendercards just ran!!!!!!", cardsInfo[cardIdArg - 1]);
-        console.log("rendercards just ran2", cardId);
+        console.log("rendercards just ran2", cardIdArg);
         if (!cardsInfo[cardIdArg - 1]) {
             return;
         } else {
@@ -56,9 +75,15 @@ export default function Character(props) {
                 char={charInfo}
                 renderCard={renderCardWithInfo}
             />
-            {renderCard1 && <Card info={cardsInfo[cardId]} />}
-            {renderCard2 && <Card info={cardsInfo[cardId]} />}
-            {renderCard3 && <Card info={cardsInfo[cardId]} />}
+            {renderCard1 && (
+                <Card info={card1Info} close={closeCard} cardId={1} />
+            )}
+            {renderCard2 && (
+                <Card info={card2Info} close={closeCard} cardId={2} />
+            )}
+            {renderCard3 && (
+                <Card info={card3Info} close={closeCard} cardId={3} />
+            )}
         </div>
     );
 }

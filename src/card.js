@@ -76,14 +76,17 @@ export default function Card(props) {
                         className="fas fa-undo-alt flipSign"
                         onMouseDown={stopTheBubblingInCard}
                     ></i>
-                    <i className="fas fa-times cross"></i>
+                    <i
+                        onClick={() => {
+                            return props.close(props.cardId);
+                        }}
+                        className="fas fa-times cross"
+                    ></i>
                     <h3
                         className="titleOfCard"
                         onMouseDown={stopTheBubblingInCard}
-                        // onMouseMove={preventDefault}
                     >
                         {(props.info && props.info.heading) || "Loading"}
-                        {/* {props.info || "Loading"} */}
                     </h3>
                     <section className="cardBetweenBorder"></section>
                     <textarea
@@ -109,7 +112,6 @@ export default function Card(props) {
                     <h3
                         className="titleOfCard"
                         onMouseDown={stopTheBubblingInCard}
-                        // onMouseMove={preventDefault}
                     >
                         NOTES: {(props.info && props.info.heading) || "Loading"}
                     </h3>
