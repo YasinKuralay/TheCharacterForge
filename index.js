@@ -49,6 +49,17 @@ app.get("/welcome", (req, res) => {
     }
 });
 
+app.get("/character:id", (req, res) => {
+    const characterId = req.params.id;
+    console.log("characterid is: ", characterId);
+    Promise.all([
+        db.getCharacter(characterId, req.session.userId),
+        db.getCharacterCards(req.session.userId, characterId),
+    ]).then((data) => {
+        console.log("data in characterid is : ", data[1].rows[0]);
+    });
+});
+
 // app.get("/createcharacter", (req, res) => {
 //     db.returnLastCharacter(req.session.userId).then((data) => {
 //         console.log("data in createcharacter is: ", data.rows[0]);
@@ -67,7 +78,20 @@ app.post("/createcharacter", (req, res) => {
             let characterId = data.rows[0].id;
             db.createCharacterTable(req.session.userId, characterId)
                 .then(() => {
-                    res.json({ characterId });
+                    db.firstInsertIntoCharacterTable(
+                        "Background",
+                        req.session.userId,
+                        characterId
+                    )
+                        .then(() => {
+                            res.json({ characterId });
+                        })
+                        .catch((err) => {
+                            console.log(
+                                "error in firstInsertIntoCharacterTable in /createcharacter: ",
+                                err
+                            );
+                        });
                 })
                 .catch((err) => {
                     console.log(

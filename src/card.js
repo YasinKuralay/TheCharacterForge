@@ -87,6 +87,8 @@ export default function Card() {
                         rows="18"
                         className="cardTextarea"
                         onMouseDown={stopTheBubblingInCard}
+                        placeholder="You can type your content here"
+                        spellCheck="false"
                     ></textarea>
                 </div>
                 <div className="backfaceOfCard">
@@ -110,6 +112,8 @@ export default function Card() {
                         rows="18"
                         className="cardTextarea"
                         onMouseDown={stopTheBubblingInCard}
+                        placeholder="Take some notes here!"
+                        spellCheck="false"
                     ></textarea>
                 </div>
             </div>

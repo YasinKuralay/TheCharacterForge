@@ -1,9 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
+import axios from "axios";
 
 export default function Sidebar() {
     // const preventThis = (e) => {
     //     e.preventDefault();
     // };
+
+    useEffect(() => {
+        axios.get("/getCharacterName");
+    }, []);
 
     return (
         <div id="sidebar">

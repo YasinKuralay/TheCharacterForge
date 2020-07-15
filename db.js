@@ -86,3 +86,27 @@ module.exports.createCharacterTable = (userId, characterId) => {
     )`
     );
 };
+
+module.exports.firstInsertIntoCharacterTable = (
+    heading,
+    userId,
+    characterId
+) => {
+    return db.query(
+        `INSERT INTO user${userId}character${characterId} (heading)
+    VALUES ($1)`,
+        [heading]
+    );
+};
+
+module.exports.getCharacter = (characterId, userId) => {
+    return db.query(
+        `SELECT * FROM user${userId}Characters
+    WHERE id=$1`,
+        [characterId]
+    );
+};
+
+module.exports.getCharacterCards = (userId, characterId) => {
+    return db.query(`SELECT * FROM user${userId}character${characterId}`);
+};

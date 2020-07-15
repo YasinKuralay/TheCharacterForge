@@ -22,6 +22,22 @@ a {
     color: red;
 }
 
+#entrancePage {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    height: 570px;
+    background-color: #242427;
+    border-radius: 40px;
+    box-shadow: 0 0 20px black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
 #register {
     display: grid;
     grid-row-gap: 26px;

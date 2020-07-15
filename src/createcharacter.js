@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import axios from "./axios";
-import Sidebar from "./sidebar";
 import Card from "./card";
 import Character from "./character";
 
@@ -9,14 +8,14 @@ export default function CreateCharacter() {
     //on component mount, creates a new character table
     useEffect(() => {
         axios.post("/createcharacter").then(({ data }) => {
+            console.log("data.characterId is: ", data.characterId);
             setCharacterId(data.characterId);
         });
     }, []);
 
     return (
         <div>
-            {charactersId && <Character characterId={charactersId} />}
-            {charactersId && <Sidebar characterId={charactersId} />}
+            {charactersId && <Character charactersId={charactersId} />}
             <Card />
         </div>
     );
