@@ -57,6 +57,7 @@ app.get("/character:id", (req, res) => {
         db.getCharacterCards(req.session.userId, characterId),
     ]).then((data) => {
         console.log("data in characterid is : ", data[1].rows[0]);
+        res.json({ data });
     });
 });
 

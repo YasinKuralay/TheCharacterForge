@@ -244,8 +244,16 @@ a {
 }
 
 .sidebarCard {
+    position: relative;
     background-color: #1b1b29;
+    /* border-bottom: 1px solid #10101d; */
     /* line-height: 32px; */
+}
+
+.sidebarBetweenBorder {
+    border-bottom: 1px solid #10101d;
+    position: absolute;
+    bottom: 0;
 }
 
 .sidebarCard:hover {
