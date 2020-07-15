@@ -48,3 +48,11 @@ module.exports.updateUserPassword = (hashedpw, email) => {
         [hashedpw, email]
     );
 };
+
+module.exports.createUsersCharacters = (userId) => {
+    return db.query(`CREATE TABLE user${userId}Characters(
+        id SERIAL PRIMARY KEY,
+        name VARCHAR(255),
+        description TEXT
+    );`);
+};

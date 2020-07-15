@@ -1,8 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
+import axios from "./axios";
 import Sidebar from "./sidebar";
 import Card from "./card";
 
 export default function CreateCharacter() {
+    //on component mount, creates a new character table
+    useEffect(() => {
+        axios.get("/createcharacter");
+    }, []);
+
     return (
         <div>
             This is CreateCharacter

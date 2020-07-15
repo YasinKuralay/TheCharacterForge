@@ -49,7 +49,7 @@ export default function Card() {
         // e.preventDefault();
     };
 
-    const toggleFlipCard = (e) => {
+    const toggleFlipCard = () => {
         setFlipCardFront(!flipCardFront);
     };
 

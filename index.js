@@ -68,12 +68,19 @@ app.post("/register", (req, res) => {
                 hashed
             )
                 .then((result) => {
-                    console.log(
-                        "the result of post register hashing is: ",
-                        result
-                    );
                     req.session.userId = result.rows[0].id;
-                    res.json({ success: true });
+                    db.createUsersCharacters(req.session.userId)
+                        .then(() => {
+                            console.log(
+                                "req.session.userId is: ",
+                                req.session.userId
+                            );
+                            res.json({ success: true });
+                        })
+                        .catch((err) => {
+                            console.log("error in register inside", err);
+                            res.json({ success: false });
+                        });
                 })
                 .catch((err) => {
                     console.log("error in register", err);
