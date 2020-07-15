@@ -1,12 +1,18 @@
 import React, { useEffect } from "react";
-// import axios from "axios";
+import axios from "./axios";
 
 export default function Sidebar(props) {
     // const preventThis = (e) => {
     //     e.preventDefault();
     // };
 
-    useEffect(() => {}, []);
+    // useEffect(() => {}, []);
+
+    const addCard = () => {
+        axios.post(`/addCardTo${props.char.id}`).then(() => {
+            props.refreshSidebar();
+        });
+    };
 
     return (
         <div id="sidebar">
@@ -39,7 +45,7 @@ export default function Sidebar(props) {
                 })}
             <div id="addBar">
                 <i className="fas fa-folder-plus"></i>
-                <i className="fas fa-plus-square"></i>
+                <i onClick={addCard} className="fas fa-plus-square"></i>
             </div>
         </div>
     );

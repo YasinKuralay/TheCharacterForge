@@ -246,6 +246,16 @@ app.post("/updateCharacterCard", (req, res) => {
         });
 });
 
+app.post("/addCardTo:id", (req, res) => {
+    db.addCard("New Card", req.params.id, req.session.userId)
+        .then(() => {
+            res.json({ success: true });
+        })
+        .catch((err) => {
+            console.log("error in /addCardTo:id : ", err);
+        });
+});
+
 app.get("/logout", (req, res) => {
     req.session = null;
     res.redirect("/welcome");

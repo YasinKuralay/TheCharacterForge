@@ -67,13 +67,22 @@ export default function Character(props) {
     };
 
     const renderCardWithInfo = (cardIdArg) => {
-        console.log("rendercards just ran!!!!!!", cardsInfo[cardIdArg - 1]);
-        console.log("rendercards just ran2", cardIdArg);
         if (!cardsInfo[cardIdArg - 1]) {
             return;
         } else {
             setCardId(cardIdArg - 1);
         }
+    };
+
+    const refreshSidebar = () => {
+        let cloneCardsInfo = [...cardsInfo];
+        cloneCardsInfo.push({
+            id: cardsInfo.length + 1,
+            heading: "New Card",
+            content_front: null,
+            content_back: null,
+        });
+        setCardsInfo(cloneCardsInfo);
     };
 
     return (
@@ -82,6 +91,7 @@ export default function Character(props) {
                 cards={cardsInfo}
                 char={charInfo}
                 renderCard={renderCardWithInfo}
+                refreshSidebar={refreshSidebar}
             />
             {renderCard1 && (
                 <Card

@@ -134,3 +134,11 @@ module.exports.updateCharacterTable = (front, back, charId, cardId, userId) => {
         [front, back]
     );
 };
+
+module.exports.addCard = (heading, charId, userId) => {
+    return db.query(
+        `INSERT INTO user${userId}character${charId} (heading)
+    VALUES ($1)`,
+        [heading]
+    );
+};
