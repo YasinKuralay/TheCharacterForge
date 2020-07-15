@@ -50,7 +50,3 @@ export default function Sidebar(props) {
         </div>
     );
 }
-
-// for (var i=0; i<location ; i++){
-//     return star
-// }

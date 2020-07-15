@@ -60,8 +60,10 @@ export default function Card(props) {
     };
 
     const closeTheCard = () => {
-        let frontText = document.getElementById("frontTextArea").value;
-        let backText = document.getElementById("backTextArea").value;
+        let frontText = document.getElementById("frontTextArea" + props.info.id)
+            .value;
+        let backText = document.getElementById("backTextArea" + props.info.id)
+            .value;
         let obj = {
             content_front: frontText,
             content_back: backText,
@@ -83,7 +85,7 @@ export default function Card(props) {
         >
             <div
                 className="innerCardContainer"
-                id={!flipCardFront && "innerCardFlipId"}
+                id={!flipCardFront ? "innerCardFlipId" : undefined}
             >
                 <div>
                     <i
@@ -104,7 +106,7 @@ export default function Card(props) {
                     <section className="cardBetweenBorder"></section>
                     <textarea
                         name="frontTextArea"
-                        id="frontTextArea"
+                        id={props.info && "frontTextArea" + props.info.id}
                         cols="24"
                         rows="18"
                         className="cardTextarea"
@@ -128,7 +130,7 @@ export default function Card(props) {
                     {/* <section className="cardBetweenBorder"></section> */}
                     <textarea
                         name="backTextArea"
-                        id="backTextArea"
+                        id={props.info && "backTextArea" + props.info.id}
                         cols="24"
                         rows="18"
                         className="cardTextarea"

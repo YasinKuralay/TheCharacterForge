@@ -61,18 +61,6 @@ app.get("/character:id", (req, res) => {
     });
 });
 
-// app.get("/createcharacter", (req, res) => {
-//     db.returnLastCharacter(req.session.userId).then((data) => {
-//         console.log("data in createcharacter is: ", data.rows[0]);
-//         if (!data.rows[0]) {
-//             db.createCharacter(req.session.userId, 1);
-//         } else {
-//             console.log("data.rows[0] + 1 is: ", data.rows[0] + 1);
-//             db.createCharacter(req.session.userId, data.rows[0] + 1);
-//         }
-//     });
-// });
-
 app.post("/createcharacter", (req, res) => {
     db.createCharacter("Allison", "No description yet", req.session.userId)
         .then((data) => {
