@@ -124,3 +124,13 @@ module.exports.getCharacter = (characterId, userId) => {
 module.exports.getCharacterCards = (userId, characterId) => {
     return db.query(`SELECT * FROM user${userId}character${characterId}`);
 };
+
+module.exports.updateCharacterTable = (front, back, charId, cardId, userId) => {
+    return db.query(
+        `UPDATE user${userId}character${charId}
+    SET content_front = $1, content_back = $2
+    WHERE id = ${cardId}
+    `,
+        [front, back]
+    );
+};

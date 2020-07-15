@@ -221,13 +221,22 @@ a {
     border-top: 2px solid #121220;
 }
 
-#sidebar div {
+.sidebarCardWrapper {
+    position: relative;
+    text-align: start;
+}
+
+.sidebarCard {
     padding: 8px 0px;
     line-height: 20px;
+    background-color: #1b1b29;
+    /* position: relative; */
+    padding-left: 20px;
 }
 
 #addBar {
     position: absolute;
+    padding: 10px 0px;
     width: 100%;
     bottom: 0;
     background-color: #121220;
@@ -243,18 +252,11 @@ a {
     transform: scale(1.12);
 }
 
-.sidebarCard {
-    position: relative;
-    background-color: #1b1b29;
-    /* border-bottom: 1px solid #10101d; */
-    /* line-height: 32px; */
-}
-
-.sidebarBetweenBorder {
+/* .sidebarBetweenBorder {
     border-bottom: 1px solid #10101d;
     position: absolute;
     bottom: 0;
-}
+} */
 
 .sidebarCard:hover {
     cursor: pointer;
@@ -272,7 +274,7 @@ a {
     color: inherit;
     border: none;
     left: 10px;
-    margin-left: 20px;
+    margin-left: 10px;
     font-family: Georgia, Arial, sans-serif;
     font-size: 15px;
 }

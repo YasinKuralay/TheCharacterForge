@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import axios from "./axios";
 
 export default function Card(props) {
     const [flipCardFront, setFlipCardFront] = useState(true);
@@ -53,8 +54,22 @@ export default function Card(props) {
         // e.preventDefault();
     };
 
-    const toggleFlipCard = () => {
+    const toggleFlipCard = (e) => {
+        e.stopPropagation();
         setFlipCardFront(!flipCardFront);
+    };
+
+    const closeTheCard = () => {
+        let frontText = document.getElementById("frontTextArea").value;
+        let backText = document.getElementById("backTextArea").value;
+        let obj = {
+            content_front: frontText,
+            content_back: backText,
+            charId: props.char.id,
+            cardId: props.info.id,
+        };
+        props.close(props.cardId, obj);
+        axios.post(`/updateCharacterCard`, obj);
     };
 
     return (
@@ -77,9 +92,7 @@ export default function Card(props) {
                         onMouseDown={stopTheBubblingInCard}
                     ></i>
                     <i
-                        onClick={() => {
-                            return props.close(props.cardId);
-                        }}
+                        onClick={closeTheCard}
                         className="fas fa-times cross"
                     ></i>
                     <h3
@@ -90,7 +103,8 @@ export default function Card(props) {
                     </h3>
                     <section className="cardBetweenBorder"></section>
                     <textarea
-                        name="defaultTextArea"
+                        name="frontTextArea"
+                        id="frontTextArea"
                         cols="24"
                         rows="18"
                         className="cardTextarea"
@@ -103,11 +117,7 @@ export default function Card(props) {
                     ></textarea>
                 </div>
                 <div className="backfaceOfCard">
-                    <i
-                        onClick={toggleFlipCard}
-                        className="fas fa-undo-alt"
-                        onMouseDown={stopTheBubblingInCard}
-                    ></i>
+                    <i onClick={toggleFlipCard} className="fas fa-undo-alt"></i>
                     {/* <i className="fas fa-times cross"></i> */}
                     <h3
                         className="titleOfCard"
@@ -117,7 +127,8 @@ export default function Card(props) {
                     </h3>
                     {/* <section className="cardBetweenBorder"></section> */}
                     <textarea
-                        name="defaultTextArea"
+                        name="backTextArea"
+                        id="backTextArea"
                         cols="24"
                         rows="18"
                         className="cardTextarea"

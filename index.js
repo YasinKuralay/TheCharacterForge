@@ -227,6 +227,25 @@ app.post("/matchcode", (req, res) => {
         });
 });
 
+app.post("/updateCharacterCard", (req, res) => {
+    console.log("req.body is: ", req.body);
+    let obj = req.body;
+    db.updateCharacterTable(
+        obj.content_front,
+        obj.content_back,
+        obj.charId,
+        obj.cardId,
+        req.session.userId
+    )
+        .then(() => {
+            console.log("SUCCESSFULLLL");
+            res.json({ success: true });
+        })
+        .catch((err) => {
+            console.log("Error in /updateCharacterCard: ", err);
+        });
+});
+
 app.get("/logout", (req, res) => {
     req.session = null;
     res.redirect("/welcome");

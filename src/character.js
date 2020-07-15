@@ -17,6 +17,7 @@ export default function Character(props) {
 
     useEffect(() => {
         axios.get(`/character${props.charactersId}`).then(({ data }) => {
+            console.log("cardsInfo is: ", data.data[1].rows[0]);
             setCardsInfo(data.data[1].rows);
             setCharInfo(data.data[0].rows[0]);
             setRenderCard1(false);
@@ -48,7 +49,14 @@ export default function Character(props) {
         }
     }, [cardId]);
 
-    const closeCard = (cardId) => {
+    const closeCard = (cardId, obj) => {
+        let cloneCardsInfo = [...cardsInfo];
+        console.log("cardsInfo is: ", cardsInfo);
+        console.log("cloneCardsInfo is: ", cloneCardsInfo);
+        cloneCardsInfo[obj.cardId - 1].content_front = obj.content_front;
+        cloneCardsInfo[obj.cardId - 1].content_back = obj.content_back;
+        setCardsInfo(cloneCardsInfo);
+        // console.log("cardsinfo after updating is: ", cardsInfo);
         if (cardId === 1) {
             setRenderCard1(false);
         } else if (cardId === 2) {
@@ -76,13 +84,28 @@ export default function Character(props) {
                 renderCard={renderCardWithInfo}
             />
             {renderCard1 && (
-                <Card info={card1Info} close={closeCard} cardId={1} />
+                <Card
+                    info={card1Info}
+                    char={charInfo}
+                    close={closeCard}
+                    cardId={1}
+                />
             )}
             {renderCard2 && (
-                <Card info={card2Info} close={closeCard} cardId={2} />
+                <Card
+                    info={card2Info}
+                    char={charInfo}
+                    close={closeCard}
+                    cardId={2}
+                />
             )}
             {renderCard3 && (
-                <Card info={card3Info} close={closeCard} cardId={3} />
+                <Card
+                    info={card3Info}
+                    char={charInfo}
+                    close={closeCard}
+                    cardId={3}
+                />
             )}
         </div>
     );

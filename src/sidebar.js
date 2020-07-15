@@ -14,20 +14,26 @@ export default function Sidebar(props) {
                 <i className="fas fa-portrait"></i>{" "}
                 <input defaultValue={props.char.name}></input>
             </div>
-            <div className="sidebarCard">
+            {/* <div className="sidebarCard">
                 <i className="fas fa-file-alt"></i> Example
-            </div>
+            </div> */}
             {props.cards &&
                 props.cards.map((elem) => {
                     return (
                         <div
-                            key={elem.id}
-                            className="sidebarCard"
-                            //the argument has to be empty, because if the argument is filled with sth, then the argument becomes the event object
-                            onClick={() => props.renderCard(elem.id)}
+                            key={elem.id + "wrapper"}
+                            className="sidebarCardWrapper"
                         >
-                            <i className="fas fa-file-alt"></i> {elem.heading}
-                            <section className="sidebarBetweenBorder"></section>
+                            <div
+                                key={elem.id}
+                                className="sidebarCard"
+                                //the argument has to be empty, because if the argument is filled with sth, then the argument becomes the event object
+                                onClick={() => props.renderCard(elem.id)}
+                            >
+                                <i className="fas fa-file-alt"></i>{" "}
+                                {elem.heading}
+                                {/* <section className="sidebarBetweenBorder"></section> */}
+                            </div>
                         </div>
                     );
                 })}
