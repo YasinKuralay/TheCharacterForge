@@ -14,10 +14,7 @@ export default function CreateCharacter() {
     }, []);
 
     return (
-        <div>
-            {charactersId && <Character charactersId={charactersId} />}
-            <Card />
-        </div>
+        <div>{charactersId && <Character charactersId={charactersId} />}</div>
     );
 }
 

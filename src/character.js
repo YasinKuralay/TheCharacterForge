@@ -4,19 +4,43 @@ import Sidebar from "./sidebar";
 import Card from "./card";
 
 export default function Character(props) {
+    // const [runthis, setRunthis] = useState(false);
     const [cardsInfo, setCardsInfo] = useState([]);
     const [charInfo, setCharInfo] = useState([]);
+    const [cardId, setCardId] = useState(null);
+    const [renderCard1, setRenderCard1] = useState(false);
+    const [renderCard2, setRenderCard2] = useState(false);
+    const [renderCard3, setRenderCard3] = useState(false);
 
     useEffect(() => {
         axios.get(`/character${props.charactersId}`).then(({ data }) => {
-            console.log(data.data[1].rows.map);
             setCardsInfo(data.data[1].rows);
             setCharInfo(data.data[0].rows[0]);
         });
     }, []);
 
-    const renderCardWithInfo = (cardId) => {
-        console.log("rendercards just ran!!!!!!", cardId);
+    useEffect(() => {
+        console.log("second useeffect just ran!");
+        if (!renderCard1) {
+            setRenderCard1(true);
+            return;
+        } else if (!renderCard2) {
+            setRenderCard2(true);
+            return;
+        } else if (!renderCard3) {
+            setRenderCard3(true);
+            return;
+        }
+    }, [cardId]);
+
+    const renderCardWithInfo = (cardIdArg) => {
+        console.log("rendercards just ran!!!!!!", cardsInfo[cardIdArg - 1]);
+        console.log("rendercards just ran2", cardId);
+        if (!cardsInfo[cardIdArg - 1]) {
+            return;
+        } else {
+            setCardId(cardIdArg - 1);
+        }
     };
 
     return (
@@ -26,7 +50,9 @@ export default function Character(props) {
                 char={charInfo}
                 renderCard={renderCardWithInfo}
             />
-            <Card />
+            {renderCard1 && <Card info={cardsInfo[cardId]} />}
+            {renderCard2 && <Card />}
+            {renderCard3 && <Card />}
         </div>
     );
 }

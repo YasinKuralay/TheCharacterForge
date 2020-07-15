@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-export default function Card() {
+export default function Card(props) {
     const [flipCardFront, setFlipCardFront] = useState(true);
     const [offsetXOnClick, setOffsetXOnClick] = useState(0);
     const [offsetYOnClick, setOffsetYOnClick] = useState(0);
@@ -18,6 +18,10 @@ export default function Card() {
             document.addEventListener("mouseup", removeTheEventListener);
         }
     }, [dragMeNow]);
+
+    // useEffect(() => {
+    //     console.log("props.info is: ", props.info);
+    // }, []);
 
     const dragMeToggleTrue = (e) => {
         setDragMeNow(true);
@@ -78,7 +82,8 @@ export default function Card() {
                         onMouseDown={stopTheBubblingInCard}
                         // onMouseMove={preventDefault}
                     >
-                        The Title
+                        {(props.info && props.info.heading) || "Loading"}
+                        {/* {props.info || "Loading"} */}
                     </h3>
                     <section className="cardBetweenBorder"></section>
                     <textarea
@@ -89,6 +94,9 @@ export default function Card() {
                         onMouseDown={stopTheBubblingInCard}
                         placeholder="You can type your content here"
                         spellCheck="false"
+                        defaultValue={
+                            (props.info && props.info.content_front) || ""
+                        }
                     ></textarea>
                 </div>
                 <div className="backfaceOfCard">
@@ -103,7 +111,7 @@ export default function Card() {
                         onMouseDown={stopTheBubblingInCard}
                         // onMouseMove={preventDefault}
                     >
-                        NOTES: The Title
+                        NOTES: {(props.info && props.info.heading) || "Loading"}
                     </h3>
                     {/* <section className="cardBetweenBorder"></section> */}
                     <textarea
@@ -114,6 +122,9 @@ export default function Card() {
                         onMouseDown={stopTheBubblingInCard}
                         placeholder="Take some notes here!"
                         spellCheck="false"
+                        defaultValue={
+                            (props.info && props.info.content_back) || ""
+                        }
                     ></textarea>
                 </div>
             </div>

@@ -89,13 +89,27 @@ module.exports.createCharacterTable = (userId, characterId) => {
 
 module.exports.firstInsertIntoCharacterTable = (
     heading,
+    contentFront,
     userId,
     characterId
 ) => {
     return db.query(
-        `INSERT INTO user${userId}character${characterId} (heading)
-    VALUES ($1)`,
-        [heading]
+        `INSERT INTO user${userId}character${characterId} (heading, content_front)
+    VALUES ($1, $2)`,
+        [heading, contentFront]
+    );
+};
+
+module.exports.secondInsertIntoCharacterTable = (
+    heading,
+    contentFront,
+    userId,
+    characterId
+) => {
+    return db.query(
+        `INSERT INTO user${userId}character${characterId} (heading, content_front)
+    VALUES ($1, $2)`,
+        [heading, contentFront]
     );
 };
 

@@ -81,11 +81,19 @@ app.post("/createcharacter", (req, res) => {
                 .then(() => {
                     db.firstInsertIntoCharacterTable(
                         "Background",
+                        "-Shady",
                         req.session.userId,
                         characterId
                     )
                         .then(() => {
-                            res.json({ characterId });
+                            db.secondInsertIntoCharacterTable(
+                                "Hobbies",
+                                "-Swimming",
+                                req.session.userId,
+                                characterId
+                            ).then(() => {
+                                res.json({ characterId });
+                            });
                         })
                         .catch((err) => {
                             console.log(
