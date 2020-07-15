@@ -16,18 +16,24 @@ export default function Character(props) {
         axios.get(`/character${props.charactersId}`).then(({ data }) => {
             setCardsInfo(data.data[1].rows);
             setCharInfo(data.data[0].rows[0]);
+            setRenderCard1(false);
+            setRenderCard2(false);
+            setRenderCard3(false);
         });
     }, []);
 
     useEffect(() => {
         console.log("second useeffect just ran!");
         if (!renderCard1) {
+            console.log("card number 1 rendered!");
             setRenderCard1(true);
             return;
         } else if (!renderCard2) {
+            console.log("card number 2 rendered!");
             setRenderCard2(true);
             return;
         } else if (!renderCard3) {
+            console.log("card number 3 rendered!");
             setRenderCard3(true);
             return;
         }
@@ -51,8 +57,8 @@ export default function Character(props) {
                 renderCard={renderCardWithInfo}
             />
             {renderCard1 && <Card info={cardsInfo[cardId]} />}
-            {renderCard2 && <Card />}
-            {renderCard3 && <Card />}
+            {renderCard2 && <Card info={cardsInfo[cardId]} />}
+            {renderCard3 && <Card info={cardsInfo[cardId]} />}
         </div>
     );
 }
