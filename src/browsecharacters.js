@@ -20,9 +20,6 @@ export default function BrowseCharacters() {
         console.log("src is :", src);
         return src;
     };
-    // const randomAvatar = () => {
-    //     return "/avatar1.png";
-    // };
 
     const renderCharacter = (charId) => {
         console.log("charId is: ", charId);
@@ -60,7 +57,7 @@ export default function BrowseCharacters() {
                         })}
                 </div>
             )}
-            {clickedCharacterId && (
+            {!!clickedCharacterId && (
                 <Character charactersId={clickedCharacterId} />
             )}
         </div>

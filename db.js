@@ -122,7 +122,9 @@ module.exports.getCharacter = (characterId, userId) => {
 };
 
 module.exports.getCharacterCards = (userId, characterId) => {
-    return db.query(`SELECT * FROM user${userId}character${characterId}`);
+    return db.query(
+        `SELECT * FROM user${userId}character${characterId} ORDER BY id`
+    );
 };
 
 module.exports.updateCharacterTable = (front, back, charId, cardId, userId) => {
@@ -153,5 +155,5 @@ module.exports.updateCharName = (charName, charId, userId) => {
 };
 
 module.exports.getUsersCharacters = (userId) => {
-    return db.query(`SELECT * FROM user${userId}Characters`);
+    return db.query(`SELECT * FROM user${userId}Characters ORDER BY id`);
 };
