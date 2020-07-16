@@ -87,7 +87,7 @@ app.post("/createcharacter", (req, res) => {
                         .then(() => {
                             db.secondInsertIntoCharacterTable(
                                 "Hobbies",
-                                "-Swimming",
+                                "-Waterboarding",
                                 req.session.userId,
                                 characterId
                             ).then(() => {

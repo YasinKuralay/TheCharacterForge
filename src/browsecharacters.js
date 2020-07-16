@@ -15,7 +15,7 @@ export default function BrowseCharacters() {
     }, []);
 
     const randomAvatar = () => {
-        let randomNumber = Math.floor(Math.random() * 10);
+        let randomNumber = Math.floor(Math.random() * 30);
         let src = "/avatar" + randomNumber + ".png";
         console.log("src is :", src);
         return src;
