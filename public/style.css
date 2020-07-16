@@ -268,7 +268,7 @@ a {
     margin-right: 7px;
 }
 
-.sidebarCard input {
+#charNameField {
     width: 100px;
     background-color: inherit;
     color: inherit;
@@ -277,6 +277,14 @@ a {
     margin-left: 10px;
     font-family: Georgia, Arial, sans-serif;
     font-size: 15px;
+}
+
+.sidebarInput {
+    width: 87px;
+    background-color: inherit;
+    color: inherit;
+    border: none;
+    font-family: Georgia, Arial, sans-serif;
 }
 
 .sidebarPersonName {

@@ -48,6 +48,7 @@ export default function Sidebar(props) {
             <div className="sidebarCard sidebarPersonName">
                 <i className="fas fa-portrait"></i>{" "}
                 <input
+                    autocomplete="off"
                     id="charNameField"
                     defaultValue={props.char.name}
                     onKeyDown={keyCheck}
@@ -71,6 +72,8 @@ export default function Sidebar(props) {
                             >
                                 <i className="fas fa-file-alt"></i>{" "}
                                 <input
+                                    autocomplete="off"
+                                    className="sidebarInput"
                                     defaultValue={elem.heading}
                                     onClick={(e) => {
                                         e.stopPropagation();
