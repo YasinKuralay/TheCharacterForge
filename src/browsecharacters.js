@@ -11,11 +11,36 @@ export default function BrowseCharacters() {
         });
     }, []);
 
+    const randomAvatar = () => {
+        let randomNumber = Math.floor(Math.random() * 10);
+        let src = "/avatar" + randomNumber + ".png";
+        console.log("src is :", src);
+        return src;
+    };
+    // const randomAvatar = () => {
+    //     return "/avatar1.png";
+    // };
+
     return (
         <div id="browseCharactersGrid">
             {characters &&
                 characters.map((elem) => {
-                    return <div key={elem.id}>{elem.name}</div>;
+                    return (
+                        <div key={elem.id} className="flip-card">
+                            <div className="flip-card-inner">
+                                <div className="flip-card-front">
+                                    <img
+                                        src={randomAvatar()}
+                                        width="200px"
+                                        height="200px"
+                                    />
+                                </div>
+                                <div className="flip-card-back">
+                                    {elem.name}
+                                </div>
+                            </div>
+                        </div>
+                    );
                 })}
         </div>
     );
