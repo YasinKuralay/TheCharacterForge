@@ -244,6 +244,17 @@ app.post("/addCardTo:id", (req, res) => {
         });
 });
 
+app.post("/refreshCharName", (req, res) => {
+    db.updateCharName(req.body.name, req.body.charId, req.session.userId)
+        .then(() => {
+            console.log("success in refreshCharName");
+            res.json({ success: true });
+        })
+        .catch((err) => {
+            console.log("Error in /refreshCharName : ", err);
+        });
+});
+
 app.get("/logout", (req, res) => {
     req.session = null;
     res.redirect("/welcome");

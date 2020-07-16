@@ -142,3 +142,12 @@ module.exports.addCard = (heading, charId, userId) => {
         [heading]
     );
 };
+
+module.exports.updateCharName = (charName, charId, userId) => {
+    return db.query(
+        `UPDATE user${userId}Characters
+    SET name = $1
+    WHERE id=$2`,
+        [charName, charId]
+    );
+};

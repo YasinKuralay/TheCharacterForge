@@ -14,11 +14,27 @@ export default function Sidebar(props) {
         });
     };
 
+    const keyCheck = (e) => {
+        if (e.key === "Enter") {
+            e.preventDefault();
+            console.log("our message: ", e.target.value);
+            let charName = document.getElementById("charNameField");
+            charName.blur();
+            props.refreshCharName(charName.value);
+            let obj = { name: charName.value, charId: props.char.Id };
+            axios.post("/refreshCharName", obj);
+        }
+    };
+
     return (
         <div id="sidebar">
             <div className="sidebarCard sidebarPersonName">
                 <i className="fas fa-portrait"></i>{" "}
-                <input defaultValue={props.char.name}></input>
+                <input
+                    id="charNameField"
+                    defaultValue={props.char.name}
+                    onKeyDown={keyCheck}
+                ></input>
             </div>
             {/* <div className="sidebarCard">
                 <i className="fas fa-file-alt"></i> Example

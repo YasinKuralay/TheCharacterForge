@@ -74,7 +74,7 @@ export default function Character(props) {
         }
     };
 
-    const refreshSidebar = () => {
+    const refreshSidebarWithNewCard = () => {
         let cloneCardsInfo = [...cardsInfo];
         cloneCardsInfo.push({
             id: cardsInfo.length + 1,
@@ -85,13 +85,20 @@ export default function Character(props) {
         setCardsInfo(cloneCardsInfo);
     };
 
+    const refreshCharName = (value) => {
+        let clonedState = { ...charInfo };
+        clonedState.name = value;
+        setCharInfo(clonedState);
+    };
+
     return (
         <div>
             <Sidebar
                 cards={cardsInfo}
                 char={charInfo}
                 renderCard={renderCardWithInfo}
-                refreshSidebar={refreshSidebar}
+                refreshSidebar={refreshSidebarWithNewCard}
+                refreshCharName={refreshCharName}
             />
             {renderCard1 && (
                 <Card
