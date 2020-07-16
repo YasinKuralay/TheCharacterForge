@@ -373,11 +373,18 @@ a {
 }
 
 /* BROWSECHARACTERS */
+
+#browseCharactersGrid {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-gap: 60px 170px;
+    justify-content: center;
+}
+
 .flip-card {
     background-color: transparent;
-    width: 300px;
-    height: 200px;
-    border: 1px solid #f1f1f1;
+    width: 200px;
+    height: 300px;
     perspective: 1000px; /* Remove this if you don't want the 3D effect */
 }
 
@@ -401,15 +408,21 @@ a {
     height: 100%;
     -webkit-backface-visibility: hidden; /* Safari */
     backface-visibility: hidden;
+    border-radius: 10px;
+    border: 3px solid #0d0d13;
 }
 
 .flip-card-front {
-    background-color: #bbb;
-    color: black;
+    background-color: #17171d;
+    color: inherit;
+}
+
+.flip-card-front img {
+    border-radius: 20px;
 }
 
 .flip-card-back {
-    background-color: dodgerblue;
-    color: white;
+    background-color: #17171d;
+    color: inherit;
     transform: rotateY(180deg);
 }

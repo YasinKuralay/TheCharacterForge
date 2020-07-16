@@ -29,14 +29,16 @@ export default function BrowseCharacters() {
                         <div key={elem.id} className="flip-card">
                             <div className="flip-card-inner">
                                 <div className="flip-card-front">
+                                    <h2>{elem.name}</h2>
                                     <img
                                         src={randomAvatar()}
-                                        width="200px"
+                                        width="180px"
                                         height="200px"
                                     />
                                 </div>
                                 <div className="flip-card-back">
-                                    {elem.name}
+                                    <h2>{elem.name}</h2>
+                                    <p>{elem.description}</p>
                                 </div>
                             </div>
                         </div>
