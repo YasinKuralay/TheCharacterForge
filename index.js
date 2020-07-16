@@ -267,6 +267,22 @@ app.post("/refreshCharName", (req, res) => {
         });
 });
 
+app.post("/refreshCardName", (req, res) => {
+    db.updateCardName(
+        req.body.heading,
+        req.body.cardId,
+        req.session.userId,
+        req.body.charId
+    )
+        .then(() => {
+            console.log("success in refreshCardName");
+            res.json({ success: true });
+        })
+        .catch((err) => {
+            console.log("Error in /refreshCardName : ", err);
+        });
+});
+
 app.get("/logout", (req, res) => {
     req.session = null;
     res.redirect("/welcome");

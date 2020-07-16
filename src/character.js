@@ -91,6 +91,12 @@ export default function Character(props) {
         setCharInfo(clonedState);
     };
 
+    const refreshCardsName = (value, id) => {
+        let clonedState = [...cardsInfo];
+        clonedState[id - 1].heading = value;
+        setCardsInfo(clonedState);
+    };
+
     return (
         <div>
             <Sidebar
@@ -99,6 +105,7 @@ export default function Character(props) {
                 renderCard={renderCardWithInfo}
                 refreshSidebar={refreshSidebarWithNewCard}
                 refreshCharName={refreshCharName}
+                refreshCardsName={refreshCardsName}
             />
             {renderCard1 && (
                 <Card

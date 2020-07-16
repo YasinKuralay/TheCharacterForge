@@ -154,6 +154,15 @@ module.exports.updateCharName = (charName, charId, userId) => {
     );
 };
 
+module.exports.updateCardName = (heading, cardId, userId, charId) => {
+    return db.query(
+        `UPDATE user${userId}character${charId}
+    SET heading = $1
+    WHERE id = $2`,
+        [heading, cardId]
+    );
+};
+
 module.exports.getUsersCharacters = (userId) => {
     return db.query(`SELECT * FROM user${userId}Characters ORDER BY id`);
 };

@@ -26,6 +26,23 @@ export default function Sidebar(props) {
         }
     };
 
+    const inputKeyCheck = (e, elemId) => {
+        console.log("elemId is: ", elemId);
+        let elem = document.getElementById("input" + elemId);
+        console.log("elem.value is: ", elem.value);
+        if (e.key === "Enter") {
+            e.preventDefault();
+            elem.blur();
+            props.refreshCardsName(elem.value, elemId);
+            let obj = {
+                cardId: elemId,
+                heading: elem.value,
+                charId: props.char.id,
+            };
+            axios.post("/refreshCardName", obj);
+        }
+    };
+
     return (
         <div id="sidebar">
             <div className="sidebarCard sidebarPersonName">
@@ -53,9 +70,17 @@ export default function Sidebar(props) {
                                 onClick={() => props.renderCard(elem.id)}
                             >
                                 <i className="fas fa-file-alt"></i>{" "}
-                                {elem.heading}
-                                {/* <section className="sidebarBetweenBorder"></section> */}
+                                <input
+                                    defaultValue={elem.heading}
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                    }}
+                                    onKeyDown={(e) => inputKeyCheck(e, elem.id)}
+                                    id={"input" + elem.id}
+                                ></input>
                             </div>
+                            {/* input def val=elem.heading id=elem.id+"input"
+                            onKeyDown={() => keyCheck(elem.id)} */}
                         </div>
                     );
                 })}
