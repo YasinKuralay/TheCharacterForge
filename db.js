@@ -151,3 +151,7 @@ module.exports.updateCharName = (charName, charId, userId) => {
         [charName, charId]
     );
 };
+
+module.exports.getUsersCharacters = (userId) => {
+    return db.query(`SELECT * FROM user${userId}Characters`);
+};

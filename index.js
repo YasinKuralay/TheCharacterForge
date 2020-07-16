@@ -61,6 +61,17 @@ app.get("/character:id", (req, res) => {
     });
 });
 
+app.get("/getUsersCharacters", (req, res) => {
+    db.getUsersCharacters(req.session.userId)
+        .then((data) => {
+            console.log("success in /getUsersCharacters", data.rows);
+            res.json({ data: data.rows });
+        })
+        .catch((err) => {
+            console.log("Error in db.getUsersCharacters : ", err);
+        });
+});
+
 app.post("/createcharacter", (req, res) => {
     db.createCharacter("Allison", "No description yet", req.session.userId)
         .then((data) => {
@@ -245,6 +256,7 @@ app.post("/addCardTo:id", (req, res) => {
 });
 
 app.post("/refreshCharName", (req, res) => {
+    console.log("REQ:BODY:CHARID İS: ", req.body.charId);
     db.updateCharName(req.body.name, req.body.charId, req.session.userId)
         .then(() => {
             console.log("success in refreshCharName");

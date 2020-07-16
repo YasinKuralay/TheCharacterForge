@@ -21,7 +21,7 @@ export default function Sidebar(props) {
             let charName = document.getElementById("charNameField");
             charName.blur();
             props.refreshCharName(charName.value);
-            let obj = { name: charName.value, charId: props.char.Id };
+            let obj = { name: charName.value, charId: props.char.id };
             axios.post("/refreshCharName", obj);
         }
     };
