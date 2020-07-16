@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "./axios";
-import Card from "./card";
+// import Card from "./card";
 import Character from "./character";
 
 export default function CreateCharacter() {
