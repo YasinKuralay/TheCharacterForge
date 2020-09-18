@@ -86,7 +86,7 @@ export default function Character(props) {
   };
 
   const refreshCharName = (value) => {
-    let clonedState = [...charInfo]; //the spread operator was placed inside curly brackets instead of square brackets. Adding this note in case that was intentional.
+    let clonedState = { ...charInfo }; //Changing the curly brackets to square brackets will make a refreshCharName request fail. Don't touch this, it's an object, not an array!
     clonedState.name = value;
     setCharInfo(clonedState);
   };
