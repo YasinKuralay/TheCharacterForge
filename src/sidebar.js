@@ -45,7 +45,7 @@ export default function Sidebar(props) {
         <input
           autoComplete="off"
           id="charNameField"
-          defaultValue={props.char.name}
+          defaultValue={props.char.name || "No Name"}
           onKeyDown={keyCheck}
         >
         </input>
