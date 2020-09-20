@@ -1,40 +1,39 @@
 import React, { useEffect } from "react";
 import axios from "./axios";
 
+export const keyCheck = (e) => {
+  if (e.key === "Enter") {
+    e.preventDefault();
+    console.log("our message: ", e.target.value);
+    let charName = document.getElementById("charNameField");
+    charName.blur();
+    props.refreshCharName(charName.value);
+    let obj = { name: charName.value, charId: props.char.id };
+    axios.post("/refreshCharName", obj);
+    return "success";
+  }
+};
+
+export const inputKeyCheck = (e, elemId) => {
+  let elem = document.getElementById("input" + elemId);
+  if (e.key === "Enter") {
+    e.preventDefault();
+    elem.blur();
+    props.refreshCardsName(elem.value, elemId);
+    let obj = {
+      cardId: elemId,
+      heading: elem.value,
+      charId: props.char.id,
+    };
+    axios.post("/refreshCardName", obj);
+  }
+};
+
 export default function Sidebar(props) {
   const addCard = () => {
     axios.post(`/addCardTo${props.char.id}`).then(() => {
       props.refreshSidebar();
     });
-  };
-
-  const keyCheck = (e) => {
-    if (e.key === "Enter") {
-      e.preventDefault();
-      console.log("our message: ", e.target.value);
-      let charName = document.getElementById("charNameField");
-      charName.blur();
-      props.refreshCharName(charName.value);
-      let obj = { name: charName.value, charId: props.char.id };
-      axios.post("/refreshCharName", obj);
-    }
-  };
-
-  const inputKeyCheck = (e, elemId) => {
-    console.log("elemId is: ", elemId);
-    let elem = document.getElementById("input" + elemId);
-    console.log("elem.value is: ", elem.value);
-    if (e.key === "Enter") {
-      e.preventDefault();
-      elem.blur();
-      props.refreshCardsName(elem.value, elemId);
-      let obj = {
-        cardId: elemId,
-        heading: elem.value,
-        charId: props.char.id,
-      };
-      axios.post("/refreshCardName", obj);
-    }
   };
 
   return (
