@@ -1,0 +1,78 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches the previous snapshot 1`] = `
+Array [
+  <div>
+    <div
+      id="topBarPlaceholder"
+    />
+    <div
+      id="topBar"
+    >
+      <img
+        id="topbarLogo"
+        src="./logo.png"
+        width="160px"
+      />
+      <div
+        className="topBarComponent"
+        onClick={[Function]}
+      >
+        <i
+          className="fas fa-home fa-lg"
+        />
+        <span>
+           Home
+        </span>
+      </div>
+      <a
+        href="/logout"
+      >
+        <div
+          className="topBarComponent"
+          id="logout"
+        >
+          <i
+            className="fas fa-sign-out-alt fa-lg"
+          />
+          <span>
+             Logout
+          </span>
+        </div>
+      </a>
+    </div>
+  </div>,
+  <div>
+    <a
+      href="/browseCharacters"
+      onClick={[Function]}
+    >
+      <div
+        id="browseCharacters"
+      >
+        <h2>
+          Browse Your Characters
+        </h2>
+        <i
+          className="fas fa-search fa-3x"
+        />
+      </div>
+    </a>
+    <a
+      href="/createcharacter"
+      onClick={[Function]}
+    >
+      <div
+        id="createCharacters"
+      >
+        <h2>
+          Create New Character
+        </h2>
+        <i
+          className="fas fa-hat-wizard fa-3x"
+        />
+      </div>
+    </a>
+  </div>,
+]
+`;
