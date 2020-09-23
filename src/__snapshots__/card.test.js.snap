@@ -1,0 +1,75 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches the previous snapshot of the Card Component 1`] = `
+<div
+  className="cardContainer"
+  onMouseDown={[Function]}
+  onMouseUp={[Function]}
+  style={
+    Object {
+      "left": "650px",
+      "top": "200px",
+    }
+  }
+>
+  <div
+    className="innerCardContainer"
+  >
+    <div>
+      <i
+        className="fas fa-undo-alt flipSign"
+        onClick={[Function]}
+        onMouseDown={[Function]}
+      />
+      <i
+        className="fas fa-times cross"
+        onClick={[Function]}
+      />
+      <h3
+        className="titleOfCard"
+        onMouseDown={[Function]}
+      >
+        Loading
+      </h3>
+      <section
+        className="cardBetweenBorder"
+      />
+      <textarea
+        className="cardTextarea"
+        cols="24"
+        defaultValue=""
+        name="frontTextArea"
+        onMouseDown={[Function]}
+        placeholder="You can type your content here"
+        rows="18"
+        spellCheck="false"
+      />
+    </div>
+    <div
+      className="backfaceOfCard"
+    >
+      <i
+        className="fas fa-undo-alt"
+        onClick={[Function]}
+      />
+      <h3
+        className="titleOfCard"
+        onMouseDown={[Function]}
+      >
+        NOTES: 
+        Loading
+      </h3>
+      <textarea
+        className="cardTextarea"
+        cols="24"
+        defaultValue=""
+        name="backTextArea"
+        onMouseDown={[Function]}
+        placeholder="Take some notes here!"
+        rows="18"
+        spellCheck="false"
+      />
+    </div>
+  </div>
+</div>
+`;

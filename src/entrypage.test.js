@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
+import renderer from "react-test-renderer";
 import EntryPage from "./entrypage.js";
 
 it("renders the EntryPage component without crashing", () => {
@@ -13,4 +14,15 @@ it("renders the EntryPage component without crashing", () => {
         div
     );
     ReactDOM.unmountComponentAtNode(div);
+});
+
+it("matches the previous snapshot of the EntryPage Component", () => {
+    const EntryPageComponentSnapshot = renderer
+        .create(
+            <BrowserRouter>
+                <EntryPage />
+            </BrowserRouter>
+        )
+        .toJSON();
+    expect(EntryPageComponentSnapshot).toMatchSnapshot();
 });

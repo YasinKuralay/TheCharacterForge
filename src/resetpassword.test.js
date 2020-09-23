@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
+import renderer from "react-test-renderer";
 import ResetPassword from "./resetpassword.js";
 
 it("renders the ResetPassword component without crashing", () => {
@@ -13,4 +14,15 @@ it("renders the ResetPassword component without crashing", () => {
         div
     );
     ReactDOM.unmountComponentAtNode(div);
+});
+
+it("matches the previous snapshot of the ResetPassword Component", () => {
+    const ResetPasswordComponentSnapshot = renderer
+        .create(
+            <BrowserRouter>
+                <ResetPassword />
+            </BrowserRouter>
+        )
+        .toJSON();
+    expect(ResetPasswordComponentSnapshot).toMatchSnapshot();
 });

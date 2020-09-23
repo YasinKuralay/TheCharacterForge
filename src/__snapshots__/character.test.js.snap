@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches the previous snapshot of the Character Component 1`] = `
+<div>
+  <div
+    id="sidebar"
+  >
+    <div
+      className="sidebarCard sidebarPersonName"
+    >
+      <i
+        className="fas fa-portrait"
+      />
+       
+      <input
+        autoComplete="off"
+        id="charNameField"
+        onKeyDown={[Function]}
+      />
+    </div>
+    <div
+      id="addBar"
+    >
+      <i
+        className="fas fa-folder-plus"
+      />
+      <i
+        className="fas fa-plus-square"
+        onClick={[Function]}
+      />
+    </div>
+  </div>
+</div>
+`;

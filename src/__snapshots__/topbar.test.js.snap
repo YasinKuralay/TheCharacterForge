@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches the previous snapshot of the TopBar Component 1`] = `
+<div>
+  <div
+    id="topBarPlaceholder"
+  />
+  <div
+    id="topBar"
+  >
+    <img
+      id="topbarLogo"
+      src="./logo.png"
+      width="160px"
+    />
+    <div
+      className="topBarComponent"
+      onClick={[Function]}
+    >
+      <i
+        className="fas fa-home fa-lg"
+      />
+      <span>
+         Home
+      </span>
+    </div>
+    <a
+      href="/logout"
+    >
+      <div
+        className="topBarComponent"
+        id="logout"
+      >
+        <i
+          className="fas fa-sign-out-alt fa-lg"
+        />
+        <span>
+           Logout
+        </span>
+      </div>
+    </a>
+  </div>
+</div>
+`;

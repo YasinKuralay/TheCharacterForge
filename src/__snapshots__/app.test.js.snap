@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`matches the previous snapshot 1`] = `
+exports[`matches the previous snapshot of the App Component 1`] = `
 Array [
   <div>
     <div

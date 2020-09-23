@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches the previous snapshot of the CreateCharacter Component 1`] = `
+<div>
+  0
+</div>
+`;

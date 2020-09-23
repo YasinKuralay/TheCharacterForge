@@ -19,7 +19,7 @@ it("returns src in the correct format /avatar{number}.png", () => {
     expect(randomAvatar()).not.toMatch(/^\/avatar\d+\.$/);
 });
 
-it("matches the previous snapshot", () => {
+it("matches the previous snapshot of the BrowseCharacters Component", () => {
     const BrowseCharactersSnapshot = renderer
         .create(<BrowseCharacters />)
         .toJSON();

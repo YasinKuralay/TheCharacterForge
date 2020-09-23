@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
+import renderer from "react-test-renderer";
 import Registration from "./registration.js";
 
 it("renders the Registration component without crashing", () => {
@@ -13,4 +14,15 @@ it("renders the Registration component without crashing", () => {
         div
     );
     ReactDOM.unmountComponentAtNode(div);
+});
+
+it("matches the previous snapshot of the Registration Component", () => {
+    const RegistrationComponentSnapshot = renderer
+        .create(
+            <BrowserRouter>
+                <Registration />
+            </BrowserRouter>
+        )
+        .toJSON();
+    expect(RegistrationComponentSnapshot).toMatchSnapshot();
 });

@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches the previous snapshot of the EntryPage Component 1`] = `
+<div>
+  <a
+    href="/browseCharacters"
+    onClick={[Function]}
+  >
+    <div
+      id="browseCharacters"
+    >
+      <h2>
+        Browse Your Characters
+      </h2>
+      <i
+        className="fas fa-search fa-3x"
+      />
+    </div>
+  </a>
+  <a
+    href="/createcharacter"
+    onClick={[Function]}
+  >
+    <div
+      id="createCharacters"
+    >
+      <h2>
+        Create New Character
+      </h2>
+      <i
+        className="fas fa-hat-wizard fa-3x"
+      />
+    </div>
+  </a>
+</div>
+`;

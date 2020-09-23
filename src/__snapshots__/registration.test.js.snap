@@ -1,0 +1,56 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches the previous snapshot of the Registration Component 1`] = `
+<div
+  id="register"
+>
+  <h2>
+    Register
+  </h2>
+  <input
+    autoComplete="off"
+    name="firstname"
+    onChange={[Function]}
+    placeholder="firstname"
+  />
+  <input
+    autoComplete="off"
+    name="lastname"
+    onChange={[Function]}
+    placeholder="lastname"
+  />
+  <input
+    autoComplete="off"
+    name="email"
+    onChange={[Function]}
+    placeholder="email"
+    type="email"
+  />
+  <input
+    autoComplete="off"
+    name="password"
+    onChange={[Function]}
+    placeholder="password"
+    type="password"
+  />
+  <button
+    onClick={[Function]}
+  >
+    Register
+  </button>
+  <p
+    id="ifYou"
+  >
+    If you already have an account, please
+     
+    <a
+      href="/login"
+      id="textDecoration"
+      onClick={[Function]}
+    >
+      log in
+    </a>
+    .
+  </p>
+</div>
+`;
