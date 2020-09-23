@@ -59,20 +59,20 @@ class Login extends Component {
 
         <p id="forgotPassword">
           Forgot your{" "}
-          <BrowserRouter>
-            <Link id="textDecoration" to="/ResetPassword">
-              password?
-            </Link>
-          </BrowserRouter>
+          {/* <BrowserRouter> */}
+          <Link id="textDecoration" to="/ResetPassword">
+            password?
+          </Link>
+          {/* </BrowserRouter> */}
         </p>
 
         <p id="ifYou">
           If you don&apos;t have an account, please{" "}
-          <BrowserRouter>
-            <Link id="textDecoration" to="/">
-              register
-            </Link>
-          </BrowserRouter>
+          {/* <BrowserRouter> */}
+          <Link id="textDecoration" to="/">
+            register
+          </Link>
+          {/* </BrowserRouter> */}
           {" "}
           first.
         </p>

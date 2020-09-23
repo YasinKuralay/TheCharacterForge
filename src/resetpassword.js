@@ -36,11 +36,11 @@ class ResetPassword extends Component {
 
           <p id="ifYou">
             If you don&apos;t have an account, please{" "}
-            <BrowserRouter>
-              <Link id="textDecoration" to="/">
-                register
-              </Link>
-            </BrowserRouter>
+            {/* <BrowserRouter> */}
+            <Link id="textDecoration" to="/">
+              register
+            </Link>
+            {/* </BrowserRouter> */}
             {" "}
             first.
           </p>
@@ -76,11 +76,11 @@ class ResetPassword extends Component {
 
           <p id="ifYou">
             If you don&apos;t have an account, please{" "}
-            <BrowserRouter>
-              <Link id="textDecoration" to="/">
-                register
-              </Link>
-            </BrowserRouter>
+            {/* <BrowserRouter> */}
+            <Link id="textDecoration" to="/">
+              register
+            </Link>
+            {/* </BrowserRouter> */}
             {" "}
             first.
           </p>
@@ -93,11 +93,11 @@ class ResetPassword extends Component {
           <h3>Success!</h3>
           <p>
             You can now{" "}
-            <BrowserRouter>
-              <Link id="textDecoration" to="/login">
-                log in
-              </Link>
-            </BrowserRouter>
+            {/* <BrowserRouter> */}
+            <Link id="textDecoration" to="/login">
+              log in
+            </Link>
+            {/* </BrowserRouter> */}
             {" "}
             with your new password
           </p>

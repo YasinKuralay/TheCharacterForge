@@ -109,11 +109,11 @@ class Registration extends Component {
 
         <p id="ifYou">
           If you already have an account, please{" "}
-          <BrowserRouter>
-            <Link id="textDecoration" to="/login">
-              log in
-            </Link>
-          </BrowserRouter>
+          {/* <BrowserRouter> */}
+          <Link id="textDecoration" to="/login">
+            log in
+          </Link>
+          {/* </BrowserRouter> */}
           .
         </p>
       </div>
