@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches the previous snapshot 1`] = `
+<div>
+  <div
+    id="browseCharactersGrid"
+  />
+</div>
+`;
