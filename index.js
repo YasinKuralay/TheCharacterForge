@@ -2,8 +2,6 @@ const express = require("express");
 const app = express();
 const compression = require("compression");
 const cookieSession = require("cookie-session");
-// const { compare, hash } = require("./bc");
-// const db = require("./db");
 const csurf = require("csurf");
 const cryptoRandomString = require("crypto-random-string");
 const { compare, hash } = require("./bc");
@@ -24,7 +22,7 @@ app.use(csurf());
 
 app.use(function (req, res, next) {
     res.cookie("mytoken", req.csrfToken());
-    console.log("req.csrfToken() ", req.csrfToken());
+    // console.log("req.csrfToken() ", req.csrfToken());
     next();
 });
 
@@ -51,12 +49,10 @@ app.get("/welcome", (req, res) => {
 
 app.get("/character:id", (req, res) => {
     const characterId = req.params.id;
-    console.log("characterid is: ", characterId);
     Promise.all([
         db.getCharacter(characterId, req.session.userId),
         db.getCharacterCards(req.session.userId, characterId),
     ]).then((data) => {
-        console.log("data in characterid is : ", data[1].rows[0]);
         res.json({ data });
     });
 });
@@ -64,7 +60,6 @@ app.get("/character:id", (req, res) => {
 app.get("/getUsersCharacters", (req, res) => {
     db.getUsersCharacters(req.session.userId)
         .then((data) => {
-            console.log("success in /getUsersCharacters", data.rows);
             res.json({ data: data.rows });
         })
         .catch((err) => {
@@ -121,7 +116,6 @@ app.post("/register", (req, res) => {
         !req.body.email ||
         !req.body.password
     ) {
-        console.log("didnt pass realiy check");
         res.json({ success: false });
     } else {
         hash(req.body.password).then((hashed) => {
@@ -159,12 +153,9 @@ app.post("/login", (req, res) => {
                 compare(req.body.password, result.rows[0].password)
                     .then((outcome) => {
                         if (outcome) {
-                            console.log("they match!");
-                            console.log("the compare returns: ", result);
                             req.session.userId = result.rows[0].id;
                             res.json({ success: true });
                         } else {
-                            console.log("no match");
                             res.json({ success: false });
                         }
                     })
@@ -227,7 +218,6 @@ app.post("/matchcode", (req, res) => {
 });
 
 app.post("/updateCharacterCard", (req, res) => {
-    console.log("req.body is: ", req.body);
     let obj = req.body;
     db.updateCharacterTable(
         obj.content_front,
@@ -237,7 +227,6 @@ app.post("/updateCharacterCard", (req, res) => {
         req.session.userId
     )
         .then(() => {
-            console.log("SUCCESSFULLLL");
             res.json({ success: true });
         })
         .catch((err) => {
@@ -256,10 +245,8 @@ app.post("/addCardTo:id", (req, res) => {
 });
 
 app.post("/refreshCharName", (req, res) => {
-    console.log("REQ:BODY:CHARID İS: ", req.body.charId);
     db.updateCharName(req.body.name, req.body.charId, req.session.userId)
         .then(() => {
-            console.log("success in refreshCharName");
             res.json({ success: true });
         })
         .catch((err) => {
@@ -275,7 +262,6 @@ app.post("/refreshCardName", (req, res) => {
         req.body.charId
     )
         .then(() => {
-            console.log("success in refreshCardName");
             res.json({ success: true });
         })
         .catch((err) => {
@@ -295,10 +281,8 @@ app.get("*", function (req, res) {
         req.url !== "/login" &&
         req.url !== "/resetpassword"
     ) {
-        console.log("this just ran");
         res.redirect("/welcome");
     } else {
-        console.log("nope, this ran");
         res.sendFile(__dirname + "/index.html");
     }
 });
